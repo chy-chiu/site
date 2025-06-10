@@ -1,9 +1,9 @@
 ---
-layout: page
+layout: home
 title: About
-permalink: /about
+permalink: /about/
 ---
 
-*This is an about page.*
+# About
 
-Feel free to tell the world about what you love! 😍
+Coming soon...

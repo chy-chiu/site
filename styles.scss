@@ -1,6 +1,446 @@
 ---
 ---
 
+// Import existing styles for compatibility
 @use "../_sass/normalize";
 @use "../_sass/code";
-@use "../_sass/style";
+
+// Color system
+:root {
+  --flexoki-black: #100F0F;
+  --flexoki-paper: #FFFDF2; // Changed to cream color
+  --flexoki-50: #F2F0E5;
+  --flexoki-100: #E6E4D9;
+  --flexoki-200: #CECDC3;
+  --flexoki-300: #B7B5AC;
+  --flexoki-500: #878580;
+  --flexoki-600: #6F6E69;
+  --flexoki-700: #575653;
+  --flexoki-900: #282726;
+  --flexoki-950: #1C1B1A;
+  --flexoki-cyan-600: #24837B;
+  --flexoki-cyan-400: #3AA99F;
+  --flexoki-cyan-50: #DDF1E4;
+  --flexoki-cyan-950: #122F2C;
+}
+
+:root,
+.theme-light {
+  --color-bg-primary: var(--flexoki-paper);
+  --color-bg-secondary: var(--flexoki-50);
+  --color-tx-normal: var(--flexoki-black);
+  --color-tx-muted: var(--flexoki-600);
+  --color-tx-faint: var(--flexoki-300);
+  --color-ui-normal: var(--flexoki-100);
+  --color-ui-hover: var(--flexoki-200);
+  --color-action: var(--flexoki-cyan-600);
+  --color-bg-hover: var(--flexoki-cyan-50);
+}
+
+.theme-dark {
+  --color-bg-primary: var(--flexoki-black);
+  --color-bg-secondary: var(--flexoki-950);
+  --color-tx-normal: var(--flexoki-200);
+  --color-tx-muted: var(--flexoki-500);
+  --color-tx-faint: var(--flexoki-700);
+  --color-ui-normal: var(--flexoki-900);
+  --color-ui-hover: var(--flexoki-700);
+  --color-action: var(--flexoki-cyan-400);
+  --color-bg-hover: var(--flexoki-cyan-950);
+}
+
+// Base styles from stephango.css with our customizations
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color-scheme: light dark;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-bg-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
+  margin: 2vw auto 0 auto;
+  line-height: 1.5;
+  padding: 2rem 0 24rem;
+  overflow-x: hidden;
+  font-size: 1.8rem;
+  font-size: calc(1.5rem + 0.25vw);
+  color: var(--color-tx-normal);
+  max-width: 37em;
+  width: 37em;
+}
+
+@media (max-width: 860px) {
+  body {
+    width: 88vw;
+    max-width: 100vw;
+  }
+}
+
+// Header Styles
+.site-header {
+  margin: 0 auto 3em;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; // Changed to baseline for proper alignment
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: baseline; // Changed to baseline for proper alignment
+  gap: 1rem;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-tx-normal);
+  line-height: 1;
+}
+
+.site-title:hover {
+  color: var(--color-action);
+}
+
+// Icon-based Theme Toggle
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  line-height: 1;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease;
+}
+
+.theme-icon {
+  display: block;
+}
+
+// Navigation
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--color-tx-normal);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: var(--color-action);
+}
+
+// Main Content
+.main-content {
+  width: 100%;
+}
+
+// Typography
+h1 {
+  font-weight: 500;
+  font-size: 2em;
+  font-size: calc(1.35em + 0.55vw);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.4em;
+  font-size: calc(1em + 0.2vw);
+  letter-spacing: -0.015em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 1.3;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+// Links
+a {
+  color: var(--color-tx-normal);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-action);
+}
+
+// Intro Section - removed animation
+.intro-section {
+  margin-bottom: 3rem;
+}
+
+.intro-text {
+  color: var(--color-tx-muted);
+  margin: 0 0 1rem 0;
+}
+
+// Section divider
+hr,
+.section-divider {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  margin: 1.5em 0;
+  background: var(--color-ui-normal);
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.post-item:not(:last-child) {
+  border-bottom: 1px solid var(--color-ui-normal);
+}
+
+.post-date {
+  font-size: 0.9em;
+  color: var(--color-tx-muted);
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+.post-title {
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-tx-normal);
+  transition: color 0.3s ease;
+}
+
+.post-title:hover {
+  color: var(--color-action);
+}
+
+.post-excerpt {
+  color: var(--color-tx-muted);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+// Writing Page Styles
+.writing-post {
+  margin-bottom: 4rem;
+  font-size: 1.1em; // Increased font size
+}
+
+.writing-post .post-title {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.writing-post .post-content {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.writing-divider {
+  margin: 4rem 0;
+  border: 0;
+  height: 2px;
+  background: var(--color-ui-normal);
+}
+
+// Note Content Styles
+.note-content {
+  font-size: 1.1em; // Increased font size
+}
+
+.note-header {
+  margin-bottom: 2rem;
+}
+
+.note-body {
+  line-height: 1.6;
+}
+
+// Blockquote Fix
+blockquote {
+  padding-left: 1.5em;
+  margin: 1.5em 0;
+  border-left: 3px solid var(--color-action);
+  color: var(--color-tx-muted);
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+// Image Styles - centered and responsive
+img {
+  max-width: 150%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 4px;
+  
+  // Center images and allow them to extend beyond content width
+  margin-left: calc(-25%);
+  margin-right: calc(-25%);
+}
+
+@media (max-width: 860px) {
+  img {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// Backlinks
+.backlinks-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-ui-normal);
+}
+
+.backlinks {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.backlink {
+  padding: 1rem;
+  border: 1px solid var(--color-ui-normal);
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+}
+
+.backlink:hover {
+  border-color: var(--color-action);
+}
+
+.backlink-excerpt {
+  font-size: 0.9rem;
+  color: var(--color-tx-muted);
+  margin-top: 0.5rem;
+}
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .main-nav {
+    gap: 1rem;
+  }
+  
+  .writing-post {
+    font-size: 1em;
+  }
+  
+  .note-content {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .header-content {
+    align-items: center;
+  }
+  
+  .header-left {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .backlinks {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Internal links styling
+.internal-link {
+  color: var(--color-action);
+  text-decoration: none;
+}
+
+.internal-link:hover {
+  text-decoration: underline;
+}
+
+// Invalid link styling
+.invalid-link {
+  color: var(--color-tx-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-tx-muted);
+  cursor: help;
+}
+
+// Code blocks
+code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  background: var(--color-bg-secondary);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--color-bg-secondary);
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  border: 1px solid var(--color-ui-normal);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
