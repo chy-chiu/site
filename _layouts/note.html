@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,6 @@ layout: default
   <title>{{ page.title }} - {{ site.title | default: "Chris" }}</title>
 </head>
 <body class="theme-light">
-
   <main class="main-content">
     <article class="note-content">
       <div class="note-header">
@@ -21,26 +19,29 @@ layout: default
         </time>
       </div>
 
-      <div class="note-body">
-        {{ content }}
-      </div>
+      <div id="notes-entry-container">
+        <content class="note-body">
+          {{ content }}
+        </content>
 
-      {% if page.backlinks.size > 0 %}
-      <div class="backlinks-section">
-        <h3>Notes mentioning this note</h3>
-        <div class="backlinks">
-          {% for backlink in page.backlinks %}
-            <div class="backlink">
-              <a class="internal-link" href="{{ site.baseurl }}{{ backlink.url }}{%- if site.use_html_extension -%}.html{%- endif -%}">{{ backlink.title }}</a>
-              <div class="backlink-excerpt">{{ backlink.excerpt | strip_html | truncatewords: 20 }}</div>
-            </div>
-          {% endfor %}
-        </div>
+        {% if page.backlinks.size > 0 %}
+        <side class="backlinks-section">
+          <h3>Notes mentioning this note</h3>
+          <div class="backlinks">
+            {% for backlink in page.backlinks %}
+              <div class="backlink">
+                <a class="internal-link" href="{{ site.baseurl }}{{ backlink.url }}{%- if site.use_html_extension -%}.html{%- endif -%}">{{ backlink.title }}</a>
+                <div class="backlink-excerpt">{{ backlink.excerpt | strip_html | truncatewords: 20 }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </side>
+        {% endif %}
       </div>
-      {% endif %}
     </article>
   </main>
-  
+  {% include link-previews.html wrapperQuerySelector="content" %}
+  <!-- {% include notes_graph.html wrapperQuerySelector="content" %} -->
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </body>
 </html>
