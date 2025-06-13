@@ -1,9 +1,8 @@
 ---
-layout: home
+layout: page
 title: About
 permalink: /about/
 ---
 
-# About
-
-Coming soon...
+# Who am I?
+Hello I'm Chris

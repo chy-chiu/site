@@ -4,12 +4,16 @@ layout: default
 <!DOCTYPE html>
 <html lang="en">
   {% include head.html %}
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title | default: "Chris" }}</title>
+  <nav>{% include nav.html %}</nav>
+  </head>
   <body>
     <div class="wrapper">
       <main>{{ content }}</main>
       <footer>{% include footer.html %}</footer>
     </div>
-
-    {% include link-previews.html wrapperQuerySelector="content" %}
   </body>
 </html>

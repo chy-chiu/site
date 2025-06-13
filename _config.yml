@@ -34,4 +34,4 @@ defaults:
   - scope:
       path: "_posts"
     values:
-      layout: "home"
+      layout: "note"

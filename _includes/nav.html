@@ -1,16 +1,16 @@
 <header class="site-header">
   <div class="header-content">
     <div class="header-left">
-      <a href="{{ '/' | relative_url }}" class="site-title">Chris</a>
-      <button id="theme-toggle" class="theme-toggle-btn">
-        <span class="theme-icon">☀️</span>
-      </button>
+      <a href="{{ '/' | relative_url }}" class="nav-icon">Chris Chiu</a>
     </div>
     
     <nav class="main-nav">
-      <a href="{{ '/about' | relative_url }}">About</a>
-      <a href="{{ '/writing' | relative_url }}">Writing</a>
-      <a href="{{ '/learning' | relative_url }}">Learning</a>
+      <a href="{{ '/about' | relative_url }}" class="nav-text">About</a>
+      <a href="{{ '/writing' | relative_url }}" class="nav-text">Writing</a>
+      <a href="{{ '/notes' | relative_url }}" class="nav-text">Learning</a>
+      <button id="theme-toggle" class="theme-toggle-btn">
+      <span id="theme-icon" class="nav-icon">𖤓</span>
+      </button>
     </nav>
   </div>
 </header>
@@ -18,18 +18,18 @@
 <script>
 // Theme toggle functionality
 const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
+const themeIcon = document.getElementById('theme-icon');
 const body = document.body;
 
 // Check for saved theme preference or default to light
 const currentTheme = localStorage.getItem('theme') || 'light';
 body.className = currentTheme === 'dark' ? 'theme-dark' : 'theme-light';
-themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+themeIcon.textContent = currentTheme === 'dark' ? '⏾' : '𖤓';
 
 themeToggle.addEventListener('click', () => {
     const isDark = body.classList.contains('theme-dark');
     body.className = isDark ? 'theme-light' : 'theme-dark';
-    themeIcon.textContent = isDark ? '☀️' : '🌙';
+    themeIcon.textContent = isDark ? '𖤓' : '⏾';
     localStorage.setItem('theme', isDark ? 'light' : 'dark');
 });
 </script>
